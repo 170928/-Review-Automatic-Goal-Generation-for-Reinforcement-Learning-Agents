@@ -48,6 +48,7 @@ Machine learning에서의 Reiforcement Learning (RL).
 > (4) 보상을 얻게되는 행동을 점점 많이 하도록 학습  
 
 ![image](https://user-images.githubusercontent.com/40893452/46404647-c3b42e80-c740-11e8-9a6e-5c7360b03b81.png)
+
 Reinforcement Learning (RL)의 목적은 "최적의 행동 양식 or 정책 (Policy)"를 학습 하는 것  
 강화학습은 "순차적"으로 결정을 내려야 하는 문제에 적용이 가능합니다.  
 전통적으로 "순차적"으로 내려야 하는 문제를 정의할 때 사용하는 방법 "MDP (Markov Decision Process)".  
@@ -68,6 +69,7 @@ GoalGAN 에서 discriminator는 현재 agent의 정책 (policy)를 위한 적절
 Generator는 이 이 기준을 충족시키는 Goal을 생성하기 위해서 학습됩니다.  
 
 ## [Related Work]
+
 
 
 ## [Details]
