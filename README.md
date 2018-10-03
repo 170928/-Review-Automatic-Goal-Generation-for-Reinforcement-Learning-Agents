@@ -73,9 +73,28 @@ Generator는 이 이 기준을 충족시키는 Goal을 생성하기 위해서 �
 
 
 ## [Details]
-
-
 ### [Problem Definition]
+전통적인 Reinforcement Learning (RL) framework에서 각 타임 스텝 t마다 agent는 action을 선택하고 행동합니다.   
+action을 선택하고 행동하는 것은 agent가 하나의 state s(t)에서 s(t+1)로 움직이게 하는 역할을 합니다.  
+> 즉, 정책 (policy)는 현재 상태 s(t)에서 행동에 대한 확률 분포 (probability distribution)으로 매핑됩니다.   
+이때, agent는 task를 수행할 수 있는 주어진 시간 동안 최대의 reward를 얻을 수 있는 정책을 학습하는 것이 강화학습의 목표 입니다.  
+그러나, 학습된 정책은 학습에 활용된 reward function 하나에 대한 최대 기댓값을 얻을 수 있는 정책입니다.  
+
+이 논문에서 제시하는 알고리즘은 ![image](https://user-images.githubusercontent.com/40893452/46410113-a7b98880-c752-11e8-84a0-a77a03c7a861.png) 와 같이 reward function의 range에 대해서도 고려합니다.  
+
+goal g 는 state 의 subset입니다.  ![image](https://user-images.githubusercontent.com/40893452/46410180-de8f9e80-c752-11e8-8a6a-553c07775f74.png)  
+그러므로, agent가 s(t)에 goal 에 속해 있다면 목표를 성취했다고 판단하게 됩니다. ![image](https://user-images.githubusercontent.com/40893452/46410381-a0df4580-c753-11e8-8ef5-8e32eb32f377.png)   
+이렇게 목표를 성취하는 과정에서 agent는 주어진 goal g 에 대해서 최적화된 정책 (policy)를 학습합니다.  
+
+이 논문에선는 goal 에 대한 reward function으로써 다음과 같은 simple reward function을 정의합니다.  
+![image](https://user-images.githubusercontent.com/40893452/46410449-e3a11d80-c753-11e8-8351-0b9a0d13135e.png)
+
+
+
+
+
+
+
 
 
 ### [Method] 
