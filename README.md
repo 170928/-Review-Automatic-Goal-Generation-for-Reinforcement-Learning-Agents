@@ -98,6 +98,10 @@ state의 subset인 goal g에 대한 학습을 수행하기 위해서는 reward�
 (4) e (epsilon) :: goal이 도달되었다고 인정 되는 것에 대한 판단에서의 tolerance (acceptable tolerance)
 
 #### [MDP]
+매 episode는 agent가 goal state에 도달하였을 때 끝나는 MDP를 정의합니다.  
+그러므로, episode의 return은 다음과 같이 정의되며, agent가 최대 T time step 내에 goal에 도달하였는지를 나타내는  
+binary random variable이 됩니다.  
+> T time step 이내에 agent가 goal에 도달하면 1, 못하면 0 이 되는 return value 이므로, binary random variable이라고 합니다.  
 
 
 
