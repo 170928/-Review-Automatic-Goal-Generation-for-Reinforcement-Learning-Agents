@@ -99,15 +99,35 @@ state의 subset인 goal g에 대한 학습을 수행하기 위해서는 reward�
 
 #### [MDP]
 매 episode는 agent가 goal state에 도달하였을 때 끝나는 MDP를 정의합니다.  
-그러므로, episode의 return은 다음과 같이 정의되며, agent가 최대 T time step 내에 goal에 도달하였는지를 나타내는  
-binary random variable이 됩니다.   
+
+(1) episode의 return은 다음과 같이 정의되며,   
 
 ![image](https://user-images.githubusercontent.com/40893452/46412303-1a2d6700-c759-11e8-9bb9-e40243327598.png)
 
+agent가 최대 T time step 내에 goal에 도달하였는지를 나타내는 binary random variable이 됩니다.   
 > T time step 이내에 agent가 goal에 도달하면 1, 못하면 0 이 되는 return value 이므로, binary random variable이라고 합니다.  
 
+(2)  
 ![image](https://user-images.githubusercontent.com/40893452/46412342-3e894380-c759-11e8-998e-d95f2802f929.png)
-는 현재 정해진 목표 (current goal) g에 따라 학습됩니다.  
+는 현재 정해진 목표 (current goal) g에 따라 다르게 학습이 이루어집니다.  
+> g 가 prior 의 개념으로 포함된다는 것을 의미합니다.  
+> 즉, 같은 state상황에서도 g 에 따라 action에대한 확률 분포 (정책)이 변합니다.  
+
+(3) current policy를 통해서 MDP를 따라갈 때 얻게되는 샘플링에서 얻게되는 기대 수익 (expected return)은  
+T time-step 내에 해당 목표 g 에 대한 성공 확률로 나타냅니다.  
+![image](https://user-images.githubusercontent.com/40893452/46425549-e5c8a380-c776-11e8-81a8-872d8c091313.png)
+
+(4) (1)에서의 Return 식과 (3) 에서의 Return에 대한 식은 다른 특징을 가집니다.   
+(1)에서의 Return 식은 "sparse indicator reward function" 으로 simple 하면서 실제로 real-wrold goal problem을 잘 표현합니다.  
+> 미로 찾기와 같이 골을 달성하고 나면 성공했다고 말을할 수 있지만, 미로 찾기 도중에는 잘 가고있다고 알 수 없는 실제문제  
+> 이론적으로, 프로그래머가 직접 "meaningful distance function"을 만들어서 "dense reward function"을 형성할 수 있습니다.  
+> 이는 미로의 특징을 찾아서 미로의 도입부는 배경이 빨간색, 중간은 파란색, 마지막은 초록색 과 같은 특징에 따라 파란색이 보이면 중간 reward를 제공하는 것과 같은 예로 이해할 수 있습니다.  
+
+(5) 제안되는 방법은 (1) / (3) 수식과 같은 Indicator로써 표현되는 binary random variable return에 대해서도 학습이 가능합니다.  
+
+#### [Objective]
+
+
 
 
 
