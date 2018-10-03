@@ -54,7 +54,8 @@ Reinforcement Learning (RL)의 목적은 "최적의 행동 양식 or 정책 (Pol
 전통적으로 "순차적"으로 내려야 하는 문제를 정의할 때 사용하는 방법 "MDP (Markov Decision Process)".  
 
 2. 최근 바둑, 49 종의 Atari Game, 다양한 robotics 작업 등에 대해서 Reinforcement Learning (RL) 알고리즘은 성공적인 결과를 보여주고 있습니다.  
-![image](https://user-images.githubusercontent.com/40893452/46405696-f7dd1e80-c743-11e8-99a7-c1c22c981639.png)  
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40893452/46405696-f7dd1e80-c743-11e8-99a7-c1c22c981639.png" width="1000"> </p>
 그러나, 위의 agent가 학습하는 환경은 모두 단일 보상 함수 (single reward function)를 가진 단일 작업 (single task)를 최적화 하기위해 학습을 수행하며, 이 학습의 결과로 동일한 단일 작업 (single task)를 수행합니다.  
 그러나, 실제 세계 환경에서는 단일 작업이 아닌 다양한 작업을 수행해야하는 agent를 필요로 합니다.  
 
