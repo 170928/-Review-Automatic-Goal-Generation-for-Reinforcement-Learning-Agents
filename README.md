@@ -53,18 +53,19 @@ Reinforcement Learning (RL)의 목적은 "최적의 행동 양식 or 정책 (Pol
 전통적으로 "순차적"으로 내려야 하는 문제를 정의할 때 사용하는 방법 "MDP (Markov Decision Process)".  
 
 2. 최근 바둑, 49 종의 Atari Game, 다양한 robotics 작업 등에 대해서 Reinforcement Learning (RL) 알고리즘은 성공적인 결과를 보여주고 있습니다.  
-![image](https://user-images.githubusercontent.com/40893452/46405696-f7dd1e80-c743-11e8-99a7-c1c22c981639.png)
+![image](https://user-images.githubusercontent.com/40893452/46405696-f7dd1e80-c743-11e8-99a7-c1c22c981639.png)  
 그러나, 위의 agent가 학습하는 환경은 모두 단일 보상 함수 (single reward function)를 가진 단일 작업 (single task)를 최적화 하기위해 학습을 수행하며, 이 학습의 결과로 동일한 단일 작업 (single task)를 수행합니다.  
 그러나, 실제 세계 환경에서는 단일 작업이 아닌 다양한 작업을 수행해야하는 agent를 필요로 합니다.  
 
 3. agent가 작동하는 환경 속에서 가능한 목적 (possible goals)에 대한 평균적인 성공 확률을 최대화 시키기 위해서는,  
 매 training stage 에서 적절한 목적 (goal)을 선택하는 것이 중요합니다.  
+> 현재 agent가 가진 정책 (policy)에 대해서 적절한 수준의 goal을 선택하는 것이 중요합니다.    
+이 논문에서 제안하는 알고리즘은 agent가 state space의 subset인 "sub-goal"로 정의되는 문제에 대해 "reward function"을 스스로 생성할 수 있게 합니다.  
+이 알고리즘은 GOal Generatvie Adversarial Network (Goal GAN) 으로 정의합니다.  
 
-
-
-
-
-
+4.   
+GoalGAN 에서 discriminator는 현재 agent의 정책 (policy)를 위한 적절한 수준의 goal인지 아닌지를 평가합니다.  
+Generator는 이 이 기준을 충족시키는 Goal을 생성하기 위해서 학습됩니다.  
 
 ## [Related Work]
 
