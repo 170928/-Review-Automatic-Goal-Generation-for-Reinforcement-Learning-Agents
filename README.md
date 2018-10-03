@@ -90,6 +90,11 @@ goal g 는 state 의 subset입니다.  ![image](https://user-images.githubuserco
 이 논문에선는 goal 에 대한 reward function으로써 다음과 같은 simple reward function을 정의합니다.  
 ![image](https://user-images.githubusercontent.com/40893452/46410449-e3a11d80-c753-11e8-8351-0b9a0d13135e.png)
 
+다음과 같은 정의들이 상용됩니다.  
+(1) ![image](https://user-images.githubusercontent.com/40893452/46410915-55c63200-c755-11e8-93a5-edd16d2a41e3.png)  
+(2) ![image](https://user-images.githubusercontent.com/40893452/46410937-64ace480-c755-11e8-8856-91ce4a4ecdff.png)  
+(3) ![image](https://user-images.githubusercontent.com/40893452/46410964-742c2d80-c755-11e8-81e2-f1b93d108424.png)  
+(4) e (epsilon) :: goal이 도달되었다고 인정 되는 것에 대한 판단에서의 tolerance (acceptable tolerance)
 
 
 
