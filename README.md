@@ -100,8 +100,15 @@ state의 subset인 goal g에 대한 학습을 수행하기 위해서는 reward�
 #### [MDP]
 매 episode는 agent가 goal state에 도달하였을 때 끝나는 MDP를 정의합니다.  
 그러므로, episode의 return은 다음과 같이 정의되며, agent가 최대 T time step 내에 goal에 도달하였는지를 나타내는  
-binary random variable이 됩니다.  
+binary random variable이 됩니다.   
+
+![image](https://user-images.githubusercontent.com/40893452/46412303-1a2d6700-c759-11e8-9bb9-e40243327598.png)
+
 > T time step 이내에 agent가 goal에 도달하면 1, 못하면 0 이 되는 return value 이므로, binary random variable이라고 합니다.  
+
+![image](https://user-images.githubusercontent.com/40893452/46412342-3e894380-c759-11e8-998e-d95f2802f929.png)
+는 현재 정해진 목표 (current goal) g에 따라 학습됩니다.  
+
 
 
 
