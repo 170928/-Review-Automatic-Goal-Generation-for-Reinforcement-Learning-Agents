@@ -70,6 +70,51 @@ GoalGAN 에서 discriminator는 현재 agent의 정책 (policy)를 위한 적절
 Generator는 이 이 기준을 충족시키는 Goal을 생성하기 위해서 학습됩니다.  
 
 ## [Related Work]
+다중 목적을 위한 정책을 학습하는 강화학습은 다음과 같이 2가지로써 불린다.  
+(1) multi-task policy search (Deisenroth, 2014)  
+(2) contextual policy search (Deisenroth, 2013 & Fabisch, 2014)  
+
+이 논문에서 제안하는 알고리즘은 위의 논문들과는 다음과 같은 다른 특징을 가진다.  
+(1) Sparse reward 환경에서도 효과적으로 문제를 해결 가능하도록 해주며, curriculum 방식을 통해서 효과적으로 multi-task를 수행할 수 있도록 해준다.  
+(2) 위의 논문들은 정해진 적은 수의 contexts/ tasks들이 학습에 사용되지만, 제안하는 알고리즘은 "contunuous task space"에서 직접적으로 curriculum을 위한 task/context를 만들어낸다.  
+
+### [Intrinsic Motivation]
+> 내재적 동기  
+> extrinsic motivation (외적 동기)는 생물체의 생존과 번식과 관련된 기본적 요구를 충족시키기위한 행동 습득을 유도하도록 유도된다.   
+> 내재적 동기는 내재적 동기가 없는 지식 (예 > 예측 능력)과 역량 (즉, 수행 능력)을 획득하는 진화 적 기능을 수행하는 동기이다.    
+> Reinforcement Learning에서는 수행 능력 (objective function)을 최대화 하고자하는 목적을 위한 수행 능력을 획득하기 위한 기능을 수행하게하는  
+> 동기를 의미.  
+
+------------------------------------------------------------------------------------------------------------------
+
+#### [추가 필수 개념]
+(1) exploration, the agent experiments with novel strategies that may improve returns in the long run  
+(2) exploitation, it maximizes rewards through behavior that is known to be successful  
+> An effective exploration strategy allows the agent to generate trajectories that are maximally informative about the environment
+그러나 exploration 과정은 small space에서 효과적으로 작동하며, continuous space에서는 사용되기 어려웠습니다.  
+그 결과, e-greedy search/ Gaussian Noise 등과 같은 방법들이 적용되어서 exploration이 high dimensional space에서도 이루어질 수 있도록 연구가 진행되었습니다.    
+하지만, 이러한 exploration은 학습시에 환경의 크기에 따라서 학습 시간을 증가시킵니다....   
+그리하여, "surprise" 라는 개념 "intrinsic" 이라는 개념을 등장시키게 된 연구가 존재합니다.  
+이 개념은 surprise를 이끄는 action을 agent가 수행하게 한다 라는 개념으로 surprise의 의미는 Dynamic model distriubtion을 크게 변화시키는 action을 선택한다는 것을 의미합니다. (새로운 정보를 많이 얻을 수 있는 action을 취한다)   
+
+-----------------------------------------------------------------------------------------------------------------
+
+Intrinsic Motivaton 개념은 policy 학습과정에서 state space를 탐사하는 방법에 대한 연구 분야를 의미합니다.  
+기존의 RL에서의 e-greedy search / Gaussian Noise based search 들을 생각하시면 됩니다.  
+이 논문에서 제안하는 방법은 이전 연구들에서 제시한 알고리즘들 보다도 효과적이며 sparse reward environment에서도 효과적으로 학습이 이루어질 수 있도록 합니다.  
+개념적인 차이로는 intrinsic motivation이 agent가 학습함에 있어서 학습이 어렵게 만드는 state에 대한 개념을 이용 (고려) 하지 않는다는 것입니다.
+> 중간 state에서 여러 곳으로 action을 취할 수 있어 해당 state로 부터 학습이 어려워지는 포인트가 있다면.... 예로 도시의 광장과 같이 여러길을 가진 그러나 모두 어떻게든 목적에 도달할수 있는 state라고 생가하면 될 것 같습니다.   
+제시하는 알고리즘은 직접적으로 agent가 학습과정에서 학습을 어렵게 만드는 task를 지정하고 학습을 수행하도록 합니다.  
+
+### [Skill-learning]
+skill-learning은 하나의 agent가 여러가지 task를 수행 할 수 있도록 하기 위한 방법에 대한 연구 중 하나의 분야입니다.  
+agent가 scratch (처음) 부터 학습을 모두 하는 것이 아니라 기존에 학습한 skill을 재사용하여 학습시에 improve를 수행하도록 하는 개념입니다.  
+그러나, useful한 skill이란 것을 정희하고 pre-training 하는 것은 매우 어려운 문제입니다.  
+
+제시하는 알고리즘은 skill 같은 요소를 사전에 찾고 pretraining 하는 과정 없이, multi-task 를 위해서 직접적으로 정책를 학습하는 방법을 통해서 문제를 해결합니다.  
+
+### [Curriculum Learning]
+
 
 
 
