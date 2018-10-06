@@ -209,7 +209,20 @@ GOID (Goals of Intermediate Difficulty) 는 다음과 같은 목적으로 사용
 goal "g"의 label은 previous training iteration동안의 모든 trajectroies에서 success 한 비율을 계산하고 이에 따라서 정해집니다.  
 
 #### [Adversarial Goal Generation]
+GOID 로부터 새로운 g 를 uniform하게 만들어내기 위해서 "goalGAN"이 사용됩니다.  
+GAN을 사용한 이유는 다음과 같습니다.  
+(1) negative example : generator가 만들어내면 안되는 goal  
+(2) high dimensional smaple can be generated   
+
+Generator G(z) 는 noise vector "z"로 부터 uniformly 하게 GOID 내의 goal g를 생성해 낼 수 있는 방법에 대해서 학습합니다.  
+Discriminator는 GOID 내의 goals 들과 GOID 외의 goals를 구별해낼 수 있도록 학습이 이루어집니다.  
+Loss function으로는 LS-GAN 기반의 다음과 같은 함수가 사용됩니다.   
+![image](https://user-images.githubusercontent.com/40893452/46570723-032e8500-c9a4-11e8-988b-a9cd23b101dd.png)   
+
+> Discriminator 는 generator가 만든 goals에 대해서 현재 정책을 통해서 label 수행된 결과를 통해, yg=1 인 데이터를 잘 구별해 낼 수 있는 능력을 학습한다.
+> Generator 는 yg=1인 데이터를 만들수 있도록 학습한다.
 
 #### [Policy Optimization]
+![image](https://user-images.githubusercontent.com/40893452/46570761-8b148f00-c9a4-11e8-8f54-6fbcdbc72841.png)
 
 
