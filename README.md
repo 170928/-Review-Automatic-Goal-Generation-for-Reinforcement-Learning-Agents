@@ -197,6 +197,16 @@ R(.)는 앞서 설명했듯이 goal g 에 대한 success probability를 의미�
 (3) 정책을 효과적으로 학습하기 위해서 위에서 만들어진 새로운 목표를 사용합니다.  
 
 #### [Goal Labelling]
+sampling rate p_g 에 따라서 완전히 goal을 샘플링하는 것은 학습시에 효과적인 샘플효율을 보이지 못합니다.  
+이 논문에서는 효과적인 샘플링 효율을 위해서 다음과 같은 일정한 샘플링 구간을 만들고 해당 구간 내에서 uniform하게 goal을 추출합니다.    
+![image](https://user-images.githubusercontent.com/40893452/46570607-b9dd3600-c9a1-11e8-94a0-a3f98a8be384.png)
+GOID (Goals of Intermediate Difficulty) 는 다음과 같은 목적으로 사용됩니다.  
+
+(1) G set 내의 대부분의 goal g 들은 sparse reward를 가집니다. 그 결과 현재 정책 (policy)를 가지고 reward를 획득하지 못하는 경우가 존재합니다. ==> 학습 과정에서 현재의 정책으로부터 얻었으면 좋겟다고 가정되는 최소한의 reward Rmin 값을 정하고 이 값보다 큰 expected return을 보여주는 goal들을 선별하게 합니다.  
+(2) 이미 학습된 goal의 small set들로 부터도 일정량의 샘플이 반복적으로 들어오는 것을 막기 위해서, 즉 아직 정책이 improvement 되어야 하는 goal에 대해서 샘플링 하기 위해서 Rmax를 제한 합니다.  
+(3) Rmin < R < Rmax 에 따라서 샘플링 된 goal들에 대해서 "previous training iteration"동안의 정보를 바탕으로 goal에 대한 labelling을 수행합니다.  
+
+goal "g"의 label은 previous training iteration동안의 모든 trajectroies에서 success 한 비율을 계산하고 이에 따라서 정해집니다.  
 
 #### [Adversarial Goal Generation]
 
