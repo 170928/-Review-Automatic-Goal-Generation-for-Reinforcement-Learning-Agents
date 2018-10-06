@@ -114,9 +114,12 @@ agent가 scratch (처음) 부터 학습을 모두 하는 것이 아니라 기존
 제시하는 알고리즘은 skill 같은 요소를 사전에 찾고 pretraining 하는 과정 없이, multi-task 를 위해서 직접적으로 정책를 학습하는 방법을 통해서 문제를 해결합니다.  
 
 ### [Curriculum Learning]
+multi-task를 위한 방법중의 하나로 skill-learning과 다른 방법 중 하나로 curriculum learning이 존재합니다.  
+간단하게 이해하자면, agent의 학습 과정에서 task를 최적화 시켜서 agent가 단계적으로 학습해 나갈 수 있게하는 방법을 의미합니다.  
+문제는 이러한 단계적 학습 대상이 "hand-crafted task"입니다.  
+그러므로, pre-specified sequence of task에 의존해서 학습하게 되는 한계점이 존재합니다.  
 
-
-
+이 논문에서 제안하는 알고리즘은 지속적으로 task를 일반화하는 policy를 훈련하며 현재의 agent 성능에 너무 어려운 작업 (goal)에 training effort를 과다하게 할당하지 않아 sparse reward 환경에서도 효과적으로 작동합니다.  
 
 ## [Details]
 ### [Problem Definition]
@@ -170,13 +173,28 @@ T time-step 내에 해당 목표 g 에 대한 성공 확률로 나타냅니다.
 
 (5) 제안되는 방법은 (1) / (3) 수식과 같은 Indicator로써 표현되는 binary random variable return에 대해서도 학습이 가능합니다.  
 
-#### [Objective]
+#### [Objective] 
+many goals "g"에 대해서 high reward를 받을 수 있게 되는 
+![image](https://user-images.githubusercontent.com/40893452/46569831-c2c80a80-c995-11e8-927f-bb1e0496aa6b.png) 를 찾는것이 목적이 됩니다.  
+수식으로는 다음과 같이 표현할 수 있습니다.  
+![image](https://user-images.githubusercontent.com/40893452/46569827-adeb7700-c995-11e8-8939-c20402c5d334.png)
 
+R(.)는 앞서 설명했듯이 goal g 에 대한 success probability를 의미합니다.  
+그러므로, 위의 식은 p_g(g)의 확률 분포를 따라서 G set에서 sampled 된 goals g 에 대한 정책이 갖는 평균적인 성공 확률을 의미합니다.  
 
-
-
-
-
-
+#### [Assumption]
+(1) 목표 공간의 일부 영역에서 충분한 수의 목표에 대해 학습 된 정책 (policy)는 해당 영역 내의 다른 목표로 보간하는 법을 배웁니다.  
+(2) 일부 목표에 대해 학습 된 정책 (policy)는 학습에 사용된 목표와 유사한 목표에 대해 학습할 때 좋은 "초기화" 요건이 됩니다. 
+> 기반이 되기 좋은 정책이라는 것을 의미합니다.  
+> transfer learning을 생각하면 됩니다.  
+즉, 학습된 정책은 목표에 간혹 도달 할 수는 있지만 일관성 (항상 도달함)을 의미하지는 않는다는 것입니다.
+ 
 
 ### [Method] 
+다음과 같은 3단계의 알고리즘이 존재합니다.  
+(1) 현재 정책에 대해서 적당한 난이도를 가진 목표인지 아닌지를 기반으로 목표의 set에 대해 label을 할당  
+(2) label을 기반으로ㅡ generator를 학습하여 적절한 난이도의 새로운 목표를 생성할 수 있도록 한다.  
+(3) 정책을 효과적으로 학습하기 위해서 위에서 만들어진 새로운 목표를 사용합니다.  
+
+#### [Goal Labelling]
+
