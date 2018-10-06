@@ -198,3 +198,8 @@ R(.)는 앞서 설명했듯이 goal g 에 대한 success probability를 의미�
 
 #### [Goal Labelling]
 
+#### [Adversarial Goal Generation]
+
+#### [Policy Optimization]
+
+
